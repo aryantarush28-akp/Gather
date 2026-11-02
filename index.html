@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gather – Tickets to your next great night out</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f0ff;--surf:#fff;--ink:#17133f;--mut:#645f8a;--line:#ddd6f7;--coral:#ff5a3c;--lemon:#ffe14d;--mint:#3ddbb0;--vio:#6c47ff;--sh:6px 6px 0 var(--ink)}
+[data-theme=dark]{--bg:#100e2b;--surf:#1b1845;--ink:#f4f0ff;--mut:#a9a4d6;--line:#3a3573;--sh:6px 6px 0 #000}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;transition:background .3s}
+h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;line-height:1.02;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--vio);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:2.5px solid var(--ink)}
+nav{display:flex;justify-content:space-between;align-items:center;height:66px}
+.logo{font-family:'Bricolage Grotesque';font-weight:800;font-size:1.7rem}
+.logo i{display:inline-block;background:var(--coral);color:#fff;font-style:normal;padding:0 8px;border-radius:8px;transform:rotate(-6deg);margin-right:4px}
+.links{display:flex;gap:22px;align-items:center;font-weight:700}
+.links a:hover{color:var(--coral)}
+.ib{width:42px;height:42px;border-radius:50%;border:2.5px solid var(--ink);background:var(--lemon);color:#17133f;box-shadow:3px 3px 0 var(--ink);transition:transform .15s}
+.ib:hover{transform:rotate(15deg) scale(1.08)}
+.menu{display:none}
+.btn{background:var(--coral);color:#fff;border:2.5px solid var(--ink);padding:12px 22px;border-radius:12px;font-weight:700;box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.y{background:var(--lemon);color:#17133f}
+.hero{position:relative;overflow:hidden;background:var(--vio);color:#fff;border-bottom:2.5px solid var(--ink);padding:70px 0 0}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,#ff5a3c88,transparent 40%),radial-gradient(circle at 10% 90%,#3ddbb066,transparent 40%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;padding-bottom:60px}
+.hero h1{font-size:clamp(3rem,8.5vw,6.5rem);font-weight:800}
+.hero h1 span{display:inline-block;background:var(--lemon);color:#17133f;padding:0 14px;border-radius:14px;transform:rotate(-3deg);margin:6px 0}
+.hero p{font-size:1.2rem;max-width:480px;margin:22px 0 28px}
+.hero .btn.o{background:transparent;color:#fff;border-color:#fff;box-shadow:4px 4px 0 #17133f}
+.stick{position:absolute;font-size:3rem;animation:fl 5s ease-in-out infinite;filter:drop-shadow(3px 4px 0 #17133f55)}
+@keyframes fl{50%{transform:translateY(-18px) rotate(10deg)}}
+.tkt{background:var(--lemon);color:#17133f;border:2.5px solid #17133f;border-radius:20px;padding:26px;box-shadow:8px 8px 0 #17133f;transform:rotate(3deg);position:relative}
+.tkt::before,.tkt::after{content:"";position:absolute;top:50%;width:26px;height:26px;border-radius:50%;background:var(--vio);border:2.5px solid #17133f;margin-top:-13px}
+.tkt::before{left:-14px}.tkt::after{right:-14px}
+.tkt small{font-weight:700}.tkt h3{font-size:1.7rem;margin:4px 0 16px}
+.cd{display:flex;gap:8px;border-top:3px dashed #17133f;padding-top:18px}
+.cd div{flex:1;background:#17133f;color:var(--lemon);border-radius:10px;text-align:center;padding:8px 0}
+.cd b{display:block;font:800 1.6rem 'Bricolage Grotesque'}.cd span{font-size:.7rem;color:#fff}
+.mq{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap;padding:12px 0;border-top:2.5px solid var(--ink)}
+.mq div{display:inline-block;animation:mq 28s linear infinite;font:800 1.25rem 'Bricolage Grotesque'}
+.mq span{margin:0 22px}.mq em{color:var(--lemon);font-style:normal}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:80px 0}
+.head h2{font-size:clamp(2.2rem,5vw,3.4rem)}
+.head h2 mark{background:var(--mint);color:#17133f;padding:0 10px;border-radius:10px}
+.head p{color:var(--mut);margin:8px 0 28px}
+.tools{display:grid;gap:16px;margin-bottom:34px}
+input,select{font:inherit;width:100%;padding:13px 16px;border:2.5px solid var(--ink);border-radius:12px;background:var(--surf);color:var(--ink)}
+input:focus,select:focus{box-shadow:4px 4px 0 var(--vio);outline:none}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{border:2.5px solid var(--ink);background:var(--surf);color:var(--ink);padding:7px 18px;border-radius:99px;font-weight:700;transition:transform .15s}
+.chip:hover{transform:rotate(-3deg) scale(1.05)}
+.chip.on{background:var(--ink);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:34px 28px}
+.card{background:var(--surf);border:2.5px solid var(--ink);border-radius:20px;box-shadow:var(--sh);display:flex;flex-direction:column;position:relative;transition:transform .2s,box-shadow .2s}
+.card:nth-child(odd){transform:rotate(-.8deg)}.card:nth-child(even){transform:rotate(.8deg)}
+.card:hover{transform:rotate(0) translateY(-8px);box-shadow:10px 14px 0 var(--ink)}
+.top{height:175px;border-radius:17px 17px 0 0;display:grid;place-items:center;font-size:4.6rem;position:relative;overflow:hidden}
+.top::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,#fff1 0 12px,transparent 12px 24px)}
+.top s{text-decoration:none;position:relative;z-index:1;transition:transform .3s}
+.card:hover .top s{transform:scale(1.25) rotate(-8deg)}
+.tag{position:absolute;z-index:2;top:12px;right:12px;background:#17133f;color:#fff;font-size:.78rem;font-weight:700;padding:3px 12px;border-radius:99px}
+.date{position:absolute;z-index:2;top:12px;left:12px;background:#fff;color:#17133f;border:2.5px solid #17133f;border-radius:10px;text-align:center;padding:2px 10px;line-height:1.1}
+.date b{display:block;font:800 1.4rem 'Bricolage Grotesque'}.date span{font-size:.7rem;font-weight:700;color:var(--coral)}
+.perf{border-top:3px dashed var(--ink);position:relative;margin:0}
+.perf::before,.perf::after{content:"";position:absolute;top:-14px;width:25px;height:25px;border-radius:50%;background:var(--bg);border:2.5px solid var(--ink)}
+.perf::before{left:-14px;clip-path:inset(0 0 0 50%)}.perf::after{right:-14px;clip-path:inset(0 50% 0 0)}
+.body{padding:16px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.body h3{font-size:1.4rem}.meta{font-size:.9rem;color:var(--mut)}.body p{flex:1;font-size:.95rem}
+#featured{background:var(--lemon);color:#17133f;border-block:2.5px solid var(--ink)}
+#featured .head p{color:#4b4520}
+.modal{position:fixed;inset:0;background:#0a0825cc;display:none;place-items:center;padding:14px;z-index:50}
+.modal.open{display:grid}
+.box{background:var(--surf);border:3px solid var(--ink);border-radius:24px;box-shadow:10px 10px 0 var(--coral);max-width:740px;width:100%;max-height:92vh;overflow:auto;animation:pop .35s cubic-bezier(.3,1.5,.5,1)}
+@keyframes pop{from{opacity:0;transform:scale(.8) rotate(-3deg)}}
+.box .top{height:170px;border-radius:21px 21px 0 0}
+.close{position:absolute;z-index:3;right:14px;top:14px;width:38px;height:38px;border-radius:50%;border:2.5px solid #17133f;background:#fff;color:#17133f;font-weight:800}
+.pad{padding:26px}.pad h2{font-size:2.2rem;margin-bottom:8px}
+form{display:grid;gap:14px;margin-top:24px;border-top:3px dashed var(--ink);padding-top:22px}
+form h3{font-size:1.5rem}
+label{font-weight:700;font-size:.9rem;display:block;margin-bottom:4px}
+.err{color:#e0243f;font-size:.82rem;font-weight:500;min-height:1.1em}
+input.bad{border-color:#e0243f}
+.ok{text-align:center;padding:30px 0}.ok .big{font-size:4rem;animation:fl 2s infinite}
+.reg{list-style:none;display:grid;gap:12px}
+.reg li{background:var(--surf);border:2.5px solid var(--ink);border-left:12px solid var(--mint);border-radius:12px;padding:12px 16px}
+.cf{position:fixed;top:-30px;font-size:1.8rem;z-index:99;pointer-events:none;animation:cf 2.2s ease-in forwards}
+@keyframes cf{to{transform:translateY(110vh) rotate(540deg)}}
+footer{background:var(--ink);color:var(--bg);text-align:center;padding:34px 20px;font-weight:500}
+@media(max-width:780px){
+.hero .wrap{grid-template-columns:1fr}.tkt{transform:none}.stick{display:none}
+.menu{display:block}
+.links{display:none;position:absolute;top:66px;left:0;right:0;background:var(--bg);flex-direction:column;padding:20px;border-bottom:2.5px solid var(--ink)}
+.links.show{display:flex}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<a href="#top" class="logo"><i>G</i>ather</a>
+<div class="links" id="links"><a href="#featured">Featured</a><a href="#events">All events</a><a href="#registrations">My tickets</a>
+<button class="ib" id="theme" aria-label="Toggle dark mode">🌙</button></div>
+<button class="ib menu" id="menu" aria-label="Open menu">☰</button>
+</nav></div></header>
+
+<main id="top">
+<div class="hero">
+<span class="stick" style="left:4%;top:18%">🎸</span><span class="stick" style="left:46%;top:8%;animation-delay:1s">🎨</span><span class="stick" style="right:6%;bottom:16%;animation-delay:2s">🚀</span>
+<div class="wrap">
+<div>
+<h1>Your next<br><span>great night</span><br>out.</h1>
+<p>Concerts, hackathons, food carnivals and more. Pick an event, grab your ticket in a minute.</p>
+<a href="#events" class="btn y">Find events</a> <a href="#registrations" class="btn o">My tickets</a>
+</div>
+<div class="tkt" aria-live="polite"><small>Doors open in</small><h3 id="nextName"></h3>
+<div class="cd"><div><b id="d">0</b><span>days</span></div><div><b id="h">0</b><span>hrs</span></div><div><b id="m">0</b><span>min</span></div><div><b id="s">0</b><span>sec</span></div></div></div>
+</div>
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+</div>
+
+<section id="featured"><div class="wrap">
+<div class="head"><h2>Don't miss <mark>these</mark></h2><p>The events everyone's talking about this season.</p></div>
+<div class="grid" id="featGrid"></div></div></section>
+
+<section id="events"><div class="wrap">
+<div class="head"><h2>Everything <mark>happening</mark></h2><p id="count"></p></div>
+<div class="tools"><input id="search" type="search" placeholder="Search by event or venue" aria-label="Search events"><div class="chips" id="chips"></div></div>
+<div class="grid" id="grid"></div></div></section>
+
+<section id="registrations" style="padding-top:0"><div class="wrap">
+<div class="head"><h2>Your <mark>tickets</mark></h2><p>Saved in this browser. <button class="chip" id="clear">Clear all</button></p></div>
+<ul class="reg" id="regList"></ul></div></section>
+</main>
+<footer>Made for people who love a good plan · Gather © 2026</footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle"><div class="box" id="box"></div></div>
+
+<script>
+const E=[
+{id:1,name:"Neon Nights Music Festival",cat:"Music",date:"2026-12-05T18:00",venue:"Kalinga Stadium, Bhubaneswar",em:"🎸",c:["#ff5a3c","#c8217a"],desc:"Live bands, DJs and food stalls under the lights.",long:"Twelve acts across two stages with local food stalls and a late-night DJ set. Gates open at 5 PM. Bring a valid ID.",f:1},
+{id:2,name:"CodeSprint Hackathon",cat:"Tech",date:"2026-11-20T09:00",venue:"KIIT Campus, Bhubaneswar",em:"💻",c:["#6c47ff","#2a8cf5"],desc:"24 hours to build something useful with your team.",long:"Teams of up to four build a working prototype in 24 hours. Mentors, meals and prizes are provided. Beginners welcome.",f:1},
+{id:3,name:"Street Food Carnival",cat:"Food",date:"2026-11-14T12:00",venue:"Janpath, Bhubaneswar",em:"🍜",c:["#f5a623","#e8590c"],desc:"60+ stalls serving Odia and street food favourites.",long:"Taste regional dishes from over 60 stalls, watch live cooking demos and join the sweet-making contest."},
+{id:4,name:"Modern Art Expo",cat:"Art",date:"2026-12-12T11:00",venue:"Lalit Kala Akademi",em:"🎨",c:["#1fa38a","#126b8f"],desc:"Paintings, sculpture and installations by 40 artists.",long:"Walk through six galleries of contemporary work. Guided tours run hourly and artist talks start at 4 PM.",f:1},
+{id:5,name:"Startup Pitch Day",cat:"Business",date:"2026-11-28T10:00",venue:"Infocity Convention Hall",em:"🚀",c:["#2f3b8f","#6c47ff"],desc:"Founders pitch to investors. Watch, learn, network.",long:"Fifteen early-stage startups pitch for seed funding. Networking lunch is included with every ticket."},
+{id:6,name:"Sunrise Marathon 10K",cat:"Sports",date:"2026-12-20T05:30",venue:"Marine Drive Ground",em:"🏃",c:["#2eaf5f","#0b7a75"],desc:"A flat, scenic 10K run for every fitness level.",long:"Chip-timed 10K with hydration points and a finisher medal. Be at the start line by 5:00 AM for warm-up."},
+{id:7,name:"Web Design Workshop",cat:"Tech",date:"2026-11-10T14:00",venue:"Online (Zoom)",em:"🖌️",c:["#8a4fff","#e24fb5"],desc:"Learn layout, colour and responsive design hands-on.",long:"A three-hour session on Flexbox, Grid and design systems. You'll build a small landing page by the end."},
+{id:8,name:"Classical Dance Evening",cat:"Music",date:"2026-12-01T19:00",venue:"Rabindra Mandap",em:"💃",c:["#b8325a","#f08a5d"],desc:"Odissi performances by leading dancers.",long:"A two-hour showcase of Odissi with live accompaniment. Seating is first come, first served."}
+];
+const cats=["All",...new Set(E.map(e=>e.cat))];let cat="All",q="";
+const $=s=>document.querySelector(s);
+const fmt=d=>new Date(d).toLocaleString("en-IN",{day:"numeric",month:"short",year:"numeric",hour:"numeric",minute:"2-digit"});
+const st={get:()=>{try{return JSON.parse(localStorage.getItem("gather_regs"))||[]}catch(e){return[]}},set:v=>{try{localStorage.setItem("gather_regs",JSON.stringify(v))}catch(e){}}};
+const mon=d=>new Date(d).toLocaleString("en",{month:"short"}).toUpperCase();
+const card=e=>`<article class="card"><div class="top" style="background:linear-gradient(135deg,${e.c[0]},${e.c[1]})"><div class="date"><b>${new Date(e.date).getDate()}</b><span>${mon(e.date)}</span></div><span class="tag">${e.cat}</span><s aria-hidden="true">${e.em}</s></div><div class="perf"></div><div class="body"><h3>${e.name}</h3><div class="meta">📍 ${e.venue}<br>🕒 ${fmt(e.date)}</div><p>${e.desc}</p><button class="btn" data-id="${e.id}">Get tickets</button></div></article>`;
+function render(){
+ $("#featGrid").innerHTML=E.filter(e=>e.f).map(card).join("");
+ const l=E.filter(e=>(cat==="All"||e.cat===cat)&&(e.name+e.venue).toLowerCase().includes(q.toLowerCase())).sort((a,b)=>new Date(a.date)-new Date(b.date));
+ $("#grid").innerHTML=l.length?l.map(card).join(""):'<p>Nothing matches that search. Try another word or category.</p>';
+ $("#count").textContent=l.length+" event"+(l.length==1?"":"s")+" to choose from";
+ $("#chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?"on":""}" data-cat="${c}">${c}</button>`).join("");
+ regs();
+}
+function regs(){const r=st.get();$("#regList").innerHTML=r.length?r.map(x=>`<li>🎟️ <b>${x.event}</b><br><span class="meta">${x.name} · ${x.email} · ${x.tickets} ticket${x.tickets>1?"s":""}</span></li>`).join(""):'<li>No tickets yet. Pick an event above to get started.</li>'}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-id]");if(b)open(+b.dataset.id);const c=e.target.closest("[data-cat]");if(c){cat=c.dataset.cat;render()}});
+$("#search").oninput=e=>{q=e.target.value;render()};
+function open(id){
+ const e=E.find(x=>x.id===id);
+ $("#box").innerHTML=`<div class="top" style="background:linear-gradient(135deg,${e.c[0]},${e.c[1]})"><button class="close" aria-label="Close">✕</button><s style="font-size:5.5rem">${e.em}</s></div><div class="pad"><h2 id="mTitle">${e.name}</h2><div class="meta">📅 ${fmt(e.date)} · 📍 ${e.venue} · 🏷️ ${e.cat}</div><p style="margin-top:12px">${e.long}</p>
+<form id="form" novalidate><h3>Grab your ticket</h3>
+<div><label for="fn">Full name</label><input id="fn" autocomplete="name"><div class="err"></div></div>
+<div><label for="em">Email address</label><input id="em" type="email" autocomplete="email"><div class="err"></div></div>
+<div><label for="ph">Phone number</label><input id="ph" type="tel" autocomplete="tel" placeholder="10-digit mobile number"><div class="err"></div></div>
+<div><label for="ev">Selected event</label><select id="ev">${E.map(x=>`<option value="${x.id}" ${x.id===id?"selected":""}>${x.name}</option>`).join("")}</select></div>
+<div><label for="tk">Tickets</label><select id="tk">${[1,2,3,4,5].map(n=>`<option>${n}</option>`).join("")}</select></div>
+<button class="btn" type="submit">Confirm my ticket</button></form></div>`;
+ $("#modal").classList.add("open");$("#form").onsubmit=submit;$("#fn").focus();
+}
+const closeM=()=>$("#modal").classList.remove("open");
+$("#modal").onclick=e=>{if(e.target.id==="modal"||e.target.closest(".close"))closeM()};
+document.onkeydown=e=>{if(e.key==="Escape")closeM()};
+function submit(ev){
+ ev.preventDefault();const f={fn:$("#fn"),em:$("#em"),ph:$("#ph")};
+ const R={fn:v=>/^[A-Za-z][A-Za-z .'-]{1,49}$/.test(v.trim())?"":"Enter your full name (letters only, at least 2 characters).",
+ em:v=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?"":"Enter a valid email, like name@example.com.",
+ ph:v=>/^[6-9]\d{9}$/.test(v.replace(/[\s-]/g,""))?"":"Enter a valid 10-digit mobile number starting with 6–9."};
+ let ok=true;for(const k in f){const m=R[k](f[k].value);f[k].classList.toggle("bad",!!m);f[k].nextElementSibling.textContent=m;if(m)ok=false}
+ if(!ok)return;
+ const e=E.find(x=>x.id==$("#ev").value),r=st.get(),n=f.fn.value.trim();
+ r.push({event:e.name,name:n,email:f.em.value.trim(),phone:f.ph.value.trim(),tickets:+$("#tk").value});st.set(r);
+ $(".pad").innerHTML=`<div class="ok"><div class="big">🎉</div><h2>You're in, ${n.split(" ")[0]}!</h2><p class="meta" style="margin:10px 0 22px">Your ticket for <b>${e.name}</b> is confirmed. We'll email details to ${f.em.value.trim()}.</p><button class="btn y" onclick="closeM()">Done</button></div>`;
+ regs();
+ if(!matchMedia("(prefers-reduced-motion: reduce)").matches)for(let i=0;i<40;i++){const c=document.createElement("div");c.className="cf";c.textContent=["🎉","✨","🎊","⭐"][i%4];c.style.left=Math.random()*100+"vw";c.style.animationDelay=Math.random()*.8+"s";document.body.appendChild(c);setTimeout(()=>c.remove(),3500)}
+}
+$("#clear").onclick=()=>{st.set([]);regs()};
+const root=document.documentElement;
+function theme(t){root.dataset.theme=t;$("#theme").textContent=t=="dark"?"☀️":"🌙";try{localStorage.setItem("gather_theme",t)}catch(e){}}
+let sv=null;try{sv=localStorage.getItem("gather_theme")}catch(e){}
+theme(sv||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));
+$("#theme").onclick=()=>theme(root.dataset.theme=="dark"?"light":"dark");
+$("#menu").onclick=()=>$("#links").classList.toggle("show");
+$("#links").onclick=e=>{if(e.target.tagName=="A")$("#links").classList.remove("show")};
+const w=cats.slice(1).map(c=>`<span>${c}</span><em>✦</em>`).join("");$("#mq").innerHTML=w+w+w+w;
+function tick(){const u=E.filter(e=>new Date(e.date)>Date.now()).sort((a,b)=>new Date(a.date)-new Date(b.date))[0];
+ if(!u){$("#nextName").textContent="No upcoming events";return}
+ $("#nextName").textContent=u.name;const t=Math.floor((new Date(u.date)-Date.now())/1000);
+ $("#d").textContent=Math.floor(t/86400);$("#h").textContent=Math.floor(t%86400/3600);$("#m").textContent=Math.floor(t%3600/60);$("#s").textContent=t%60}
+tick();setInterval(tick,1000);render();
+</script>
+</body>
+</html>
